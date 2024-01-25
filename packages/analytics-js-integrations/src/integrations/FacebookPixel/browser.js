@@ -166,7 +166,7 @@ class FacebookPixel {
 
       const productInfo = {
         content_ids: contentIds,
-        content_type: getContentType(rudderElement, contentType, this.categoryToContent),
+        content_type: getContentType(event, contentType, this.categoryToContent),
         contents,
         content_category: eventHelpers.getCategory(category),
         content_name: contentName,
@@ -189,7 +189,7 @@ class FacebookPixel {
 
       const productInfo = {
         content_ids: contentIds,
-        content_type: getContentType(rudderElement, 'product', this.categoryToContent),
+        content_type: getContentType(event, 'product', this.categoryToContent),
         content_name: eventHelpers.getProdName(productName, name),
         content_category: eventHelpers.getCategory(category),
         currency,
@@ -208,7 +208,7 @@ class FacebookPixel {
         value: productInfo.value,
       });
     } else if (event === 'Order Completed') {
-      const contentType = getContentType(rudderElement, 'product', this.categoryToContent);
+      const contentType = getContentType(event, 'product', this.categoryToContent);
       const { contents, contentIds } = getProductsContentsAndContentIds(products, quantity, price, deliveryCategory);
 
       // ref: https://developers.facebook.com/docs/meta-pixel/implementation/marketing-api#purchase
@@ -258,7 +258,7 @@ class FacebookPixel {
 
       const productInfo = {
         content_ids: contentIds,
-        content_type: getContentType(rudderElement, 'product', this.categoryToContent),
+        content_type: getContentType(event, 'product', this.categoryToContent),
         content_category: contentCategory,
         currency,
         value: revValue,
